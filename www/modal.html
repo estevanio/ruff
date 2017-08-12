@@ -1,0 +1,24 @@
+<div class="classes-modal modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>update: {{clicked}}</h2>
+                        <div class="form-group" ng-repeat="(key, value) in area">
+                            <label ng-if="key!='sections'">{{key}}</label>
+                            <input ng-if="key!='sections'" ng-model="area[key]" type="text" class="form-control">
+                        </div>
+                        <div class="form-group" ng-repeat="key in area.sections">
+                            <label>title {{$index}}</label>
+                            <input ng-model="key.title" type="text" class="form-control">
+                            <label>description {{$index}}</label>
+                         <textarea class="form-control" rows="4" ng-model="key.description"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                         <button type="button" ng-click="update()" class="btn btn-primary"><i class="fa fa-times"></i>Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

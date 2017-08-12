@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="HomeCtrl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ruffians MC</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- custom - css -->
+    <link rel="stylesheet" href="style/app.css">
+    <!-- lib - js -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/firebase/firebase.js"></script>
+    <script src="lib/angularfire/dist/angularfire.min.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAcQ4TNa1ZlqntYDTt3Qkr39veQtXctP0c",
+        authDomain: "ruffiansmc-7cc83.firebaseapp.com",
+        databaseURL: "https://ruffiansmc-7cc83.firebaseio.com",
+        projectId: "ruffiansmc-7cc83",
+        storageBucket: "ruffiansmc-7cc83.appspot.com",
+        messagingSenderId: "541734879972"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!-- custom - js -->
+    <script src="script/app.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body id="page-top" class="index" ng-cloak>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">RUFFIANS MC</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#pillars">Pillars</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Scholarship</a>
+                    </li>
+                    <li ng-if="!logged">
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li ng-if="logged">
+                        <a class="page-scroll" href="#contact">Inquiries</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- Header -->
+    <header>
+        <div class="container" ng-click="openmodal('banner')">
+            <div class="intro-text">
+                <div class="intro-lead-in">{{banner.lead}}</div>
+                <div class="intro-heading">{{banner.heading}}</div>
+                <a href="#about" class="page-scroll btn btn-xl">More...</a>
+            </div>
+        </div>
+    </header>
+        <section id="about" class="bg-light-gray" ng-click="openmodal('about')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-center">{{about.heading}}</h2>
+                    <h3 class="section-subheading text-muted">{{about.subhead}}</h3>
+                    <p class="section-paragraph">{{about.body}}</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- Services Section -->
+    <section id="pillars">
+        <div class="container" ng-click="openmodal('pillars')">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">{{pillars.heading}}</h2>
+                    <h3 class="section-subheading text-muted">{{pillars.subhead}}</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4" ng-repeat="i in pillars.sections">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="glyphicon {{i.icon}}"></i>
+                    </span>
+                    <h4 class="service-heading">{{i.title}}</h4>
+                    <p class="text-muted">{{i.description}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Scholarship Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">2016 RUFFIANS MOTORCYLE CLUB SCHOLARSHIP ESSAY CONTEST</h2>
+                    <h3 class="section-subheading text-muted">(A Masonic Motorcycle Club)</h3>
+                </div>
+            </div>
+            <div >
+                <div class="featurette row">
+                    <img class="featurette-image img-circle img-responsive pull-right" ng-src="img/logo.jpg">
+                    <p>This is a onetime $500.00 scholarship.
+                    </p>
+                    <strong>Topic:</strong> “Describe the History of the Electoral College, how it works and its relevance today.”
+
+                    <p><strong>Length:</strong> Your essay should have no fewer than 1000 words and no more than 1250 words.
+                    </p>
+                    <p><strong>Form:</strong> The essay must be in English and should be typed or prepared on a computer or word processor, using black type in a non-script font no smaller than 12 point or larger than 14 point. It should be double spaced and typed on one side of a good quality 8 ½ by 11 paper. Handwritten essays will be disqualified. A limited vision student may use a tape recorder or very large type. A written transcript must be included, as well as a teacher’s or physician’s letter attesting to the student’s special need.</p>
+
+                    <p><strong>Each essay must have a title page listing the following:</strong></p>
+                    Applicant’s full name
+                    Applicant’s Masonic Youth Group affiliation
+                    Masonic Youth Group address
+                    Name of Masonic Youth Group Leader and contact information.
+                    Essays without the above information will be disqualified
+                    Each essay must be accompanied by a signed statement of the Masonic Youth Group Leader that the applicant has had at least a 75% attendance record for the preceding year, including excused absences.
+                    Each applicant may submit only one essay
+                    Entries become the property of the Ruffians Motorcycle Club and cannot be returned.</p>
+
+                    <p><strong>Content:</strong> No specific name or title of anyone you associate with, in the Masonic bodies, can be used in the essay.</p>
+
+                    <p><strong>Bibliography:</strong> Essay must have a bibliography listing of all references utilized. Internet resources, if used, should be cited in similar format to that used for printed resources. Add the electronic address used to access the document as supplementary information. Any essay with information copied directly from sources without using quotes will be DISQUALIFIED. All essays must be the applicant’s original work. You must sign and date the essay at the bottom right-hand corner of the bibliography page. That signature is an assurance from you that you did the work.
+                    </p>
+                    <p><strong>Judging:</strong> The essays will be judged by the members of the Club. Each essay will be judged based on adherence to essay topic, organization of material, interest, originality, spelling, grammar, punctuation, and neatness.</p>
+
+                    <p><strong>Deadline:</strong> Entries must be postmarked no later than March 25, 2017 and sent to
+                        Mark Galyean. 28622 Frairstone Ct.  Rancho Palos Verdes,CA 90275
+                        Email <a href="mailto:">mark.h.galyean@gmail.com</a>
+                        Phone <a href="tel:7147495519">(714)749-5519</a>i
+                        </p>
+                        <p>
+                            <a href="/downloads/application.pdf" download="application.pdf"><button type="button" class="btn btn-default">
+                              <span  class="glyphicon glyphicon-download"></span> Application
+                          </button></a>
+                          <a href="/downloads/statement.pdf" download="statement.pdf"><button type="button" class="btn btn-default">
+                              <span class="glyphicon glyphicon-download"></span> Statement of Attendance
+                          </button></a>
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <ng-include src="'form.html'"></ng-include>
+    <div ng-if="logged" ng-include="'inqueries.html'"></div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Ruffians MC</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+<!--                         <li><a href="https://www.instagram.com/odysseus_trainingandyoga/"><i class="fa fa-instagram"></i></a>
+                        </li> -->
+                        <li><a href="https://www.facebook.com/RuffiansMc/"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="tel:17143139982"><i class="fa fa-phone"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li ng-click="loginPopup()">Login
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/easing.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.min.js"></script>
+    <!-- Contact Form JavaScript -->
+    <!--     <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script> -->
+    <!-- Custom Theme JavaScript -->
+    <script src="js/agency.js"></script>
+    <div ng-if="logged" ng-include="'modal.html'"></div>
+    <div ng-include="'login.html'"></div>
+</body>
+
+</html>

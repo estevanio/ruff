@@ -1,0 +1,22 @@
+<div ng-repeat="i in inquiries | orderBy:'date'">
+    <div class="panel panel-default">
+        <div class="panel-heading">{{i.name}}</div>
+        <div class="panel-body">
+            <blockquote>
+                {{i.message}}
+            </blockquote>
+            <ul class="list-group">
+                <a href="tel:{{i.number}}">
+                    <li class="list-group-item">Number: {{i.number}} 
+                        <span class="badge"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    </li>
+                </a>
+                <a href="mailto:{{i.number}}">
+                    <li href="mailto:{{i.email}}" class="list-group-item">Email: {{i.email}}
+                        <span class="badge"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                     </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
